@@ -7,6 +7,8 @@ public class Projectile {
     private final double radians;
     private final double velocity;
     private double seconds;
+    private final double gravity = 9.8;
+
     public Projectile(double angle, double velocity) {
         this.angle = angle;
         this.velocity = velocity;
@@ -27,10 +29,18 @@ public class Projectile {
     }
 
     /**
-     * @return the time when the hirsch.projectile.Projectile is at its highest point.
+     * @return the time when the projectile is at its highest point.
      */
-
     public double getApexTime() {
         return velocity * Math.sin(radians) / 9.8;
     }
+
+    /**
+     * @return the highest Y value of the projectile.
+     */
+    public double getPeakY() {
+        return Math.pow(velocity * Math.sin(radians), 2) / (2 * gravity);
+    }
+
 }
+
