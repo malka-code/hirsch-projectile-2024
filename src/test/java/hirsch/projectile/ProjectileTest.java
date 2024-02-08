@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ProjectileTest {
 
     @Test
-    public void GetX() {
+    public void getX() {
         // given
         Projectile projectile = new Projectile(31, 65);
         projectile.setSeconds(2.7);
@@ -21,7 +21,7 @@ class ProjectileTest {
     }
 
     @Test
-    public void GetY() {
+    public void getY() {
         // given
         Projectile projectile = new Projectile(31, 65);
         projectile.setSeconds(2.7);
@@ -34,7 +34,7 @@ class ProjectileTest {
     }
 
     @Test
-    public void GetApexTime() {
+    public void getApexTime() {
         // given
         Projectile projectile = new Projectile(31, 65);
 
@@ -46,7 +46,7 @@ class ProjectileTest {
     }
 
     @Test
-    public void GetPeakY() {
+    public void getPeakY() {
         // given
         Projectile projectile = new Projectile(31, 65);
 

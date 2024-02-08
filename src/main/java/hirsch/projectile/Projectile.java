@@ -7,7 +7,7 @@ public class Projectile {
     private final double radians;
     private final double velocity;
     private double seconds;
-    private final double GRAVITY = 9.8;
+    private static final double GRAVITY = 9.8;
 
     public Projectile(double angle, double velocity) {
         this.angle = angle;
@@ -24,8 +24,8 @@ public class Projectile {
     }
 
     public double getY() {
-        return Math.sin(radians) * velocity * seconds -
-                .5 * GRAVITY * seconds * seconds;
+        return Math.sin(radians) * velocity * seconds
+                - .5 * GRAVITY * seconds * seconds;
     }
 
     /**
