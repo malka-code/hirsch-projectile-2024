@@ -1,9 +1,8 @@
 package hirsch.projectile;
 
-import hirsch.projectile.Projectile;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProjectileTest {
 
@@ -42,7 +41,7 @@ class ProjectileTest {
         double actual = projectile.getApexTime();
 
         // then
-        assertEquals(3.41, actual, 0.01);
+        assertEquals(3.41, actual, .01);
     }
 
     @Test
@@ -54,7 +53,7 @@ class ProjectileTest {
         double actual = projectile.getPeakY();
 
         // then
-        assertEquals(57.18, actual, 0.01);
+        assertEquals(57.18, actual, .01);
     }
 
     @Test
@@ -66,6 +65,7 @@ class ProjectileTest {
         double actual = projectile.getInterceptX();
 
         // then
-        assertEquals(380.65, actual, 0.01);
+        assertEquals(380.65, actual, .01);
+
     }
 }
