@@ -47,5 +47,9 @@ public class Projectile {
 
         return Math.cos(radians) * velocity * t;
     }
+
+    public void setTime(int i) {
+
+    }
 }
 

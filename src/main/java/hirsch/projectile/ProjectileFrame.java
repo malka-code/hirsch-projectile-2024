@@ -21,13 +21,21 @@ public class ProjectileFrame extends JFrame {
     private final JLabel calculatedYLabel;
     private final JLabel peakY;
     private final JLabel interceptX;
+    private ProjectileGraph graph = new ProjectileGraph();
 
     public ProjectileFrame() {
         setSize(400, 600);
         setTitle("Projectile Calculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new GridLayout(8, 2));
+        JPanel main = new JPanel();
+        main.setLayout(new BorderLayout());
+        setContentPane(main);
+
+        JPanel west = new JPanel();
+        main.add(west, BorderLayout.WEST);
+
+        west.setLayout(new GridLayout(8, 2));
         JLabel velocityLabel = new JLabel("Velocity");
         JLabel angleLabel = new JLabel("Angle");
 
@@ -54,70 +62,38 @@ public class ProjectileFrame extends JFrame {
         peakY = new JLabel();
         interceptX = new JLabel();
 
-        add(velocityLabel);
-        add(velocityField);
+        west.add (velocityLabel);
+        west.add(velocityField);
 
-        add(angleLabel);
-        add(angleSlider);
+        west.add(angleLabel);
+        west.add(angleSlider);
 
-        add(secondsLabel);
-        add(secondsField);
+        west.add(secondsLabel);
+        west.add(secondsField);
 
-        add(XLabel);
-        add(calculatedXLabel);
+        west.add(XLabel);
+        west.add(calculatedXLabel);
 
-        add(YLabel);
-        add(calculatedYLabel);
+        west.add(YLabel);
+        west.add(calculatedYLabel);
 
-        add(peakYLabel);
-        add(peakY);
+        west.add(peakYLabel);
+        west.add(peakY);
 
-        add(interceptXLabel);
-        add(interceptX);
+        west.add(interceptXLabel);
+        west.add(interceptX);
 
-        add(empty);
-        add(calculateButton);
+        west.add(empty);
+        west.add(calculateButton);
 
-        velocityField.getDocument().addDocumentListener(new SimpleDocumentListener() {
-            @Override
-            public void update(DocumentEvent e) {
-                Projectile projectile = new Projectile(
-                        Double.parseDouble(velocityField.getText()),
-                        Double.parseDouble(String.valueOf(angleSlider.getValue()))
-                );
-                projectile.setSeconds(
-                        Double.parseDouble(secondsField.getText())
-                );
-                calculatedXLabel.setText(Double.toString(projectile.getX()));
-                calculatedYLabel.setText(Double.toString(projectile.getY()));
-                peakY.setText(Double.toString(projectile.getPeakY()));
-                interceptX.setText(Double.toString(projectile.getInterceptX()));
-            }
-        });
+        velocityField.getDocument().addDocumentListener((SimpleDocumentListener)
+                documentEvent -> createProjectile());
 
-        angleSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                createProjectile();
-            }
-        });
+        angleSlider.addChangeListener(changeEvent -> createProjectile());
 
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Projectile projectile = new Projectile(
-                        angleSlider.getValue(),
-                        Double.parseDouble(String.valueOf(velocityField.getX()))
-                );
-                projectile.setSeconds(
-                        Double.parseDouble(secondsField.getText())
-                );
-                calculatedXLabel.setText(Double.toString(projectile.getX()));
-                calculatedYLabel.setText(Double.toString(projectile.getY()));
-                peakY.setText(Double.toString(projectile.getPeakY()));
-                interceptX.setText(Double.toString(projectile.getInterceptX()));
-            }
-        });
+        calculateButton.addActionListener(actionEvent -> createProjectile());
+
+        main.add(graph, BorderLayout.CENTER);
 
     }
 
@@ -133,5 +109,6 @@ public class ProjectileFrame extends JFrame {
         calculatedYLabel.setText(Double.toString(projectile.getY()));
         peakY.setText(Double.toString(projectile.getPeakY()));
         interceptX.setText(Double.toString(projectile.getInterceptX()));
+        graph.setProjectile(projectile);
     }
 }
