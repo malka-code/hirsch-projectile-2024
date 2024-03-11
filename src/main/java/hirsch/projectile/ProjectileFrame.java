@@ -1,13 +1,9 @@
 package hirsch.projectile;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class ProjectileFrame extends JFrame {
 
@@ -24,7 +20,7 @@ public class ProjectileFrame extends JFrame {
     private ProjectileGraph graph = new ProjectileGraph();
 
     public ProjectileFrame() {
-        setSize(400, 600);
+        setSize(1000, 600);
         setTitle("Projectile Calculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -37,59 +33,64 @@ public class ProjectileFrame extends JFrame {
 
         west.setLayout(new GridLayout(8, 2));
         JLabel velocityLabel = new JLabel("Velocity");
-        JLabel angleLabel = new JLabel("Angle");
+
 
         angleSlider = new JSlider(JSlider.HORIZONTAL,
                 ANGLE_MIN, ANGLE_MAX, ANGLE_INIT);
+        angleSlider.addChangeListener(e-> createProjectile());
 
         angleSlider.setMajorTickSpacing(10);
         angleSlider.setMinorTickSpacing(5);
         angleSlider.setPaintTicks(true);
         angleSlider.setPaintLabels(true);
 
-        JLabel secondsLabel = new JLabel("Seconds");
-        JLabel XLabel = new JLabel("X");
-        JLabel YLabel = new JLabel("Y");
-
         velocityField = new JTextField();
+        velocityField.getDocument().addDocumentListener((SimpleDocumentListener) e -> createProjectile());
+
         secondsField = new JTextField("0");
-        calculatedXLabel = new JLabel();
-        calculatedYLabel = new JLabel();
-        JLabel empty = new JLabel();
+
+        secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> createProjectile());
+
+
+
+
         JButton calculateButton = new JButton("Calculate");
-        JLabel peakYLabel = new JLabel("Peak Y");
-        JLabel interceptXLabel = new JLabel("Intercept X");
         peakY = new JLabel();
         interceptX = new JLabel();
+
 
         west.add (velocityLabel);
         west.add(velocityField);
 
+        JLabel angleLabel = new JLabel("Angle");
         west.add(angleLabel);
         west.add(angleSlider);
 
+        JLabel secondsLabel = new JLabel("Seconds");
         west.add(secondsLabel);
         west.add(secondsField);
 
+        JLabel XLabel = new JLabel("X");
+        calculatedXLabel = new JLabel();
         west.add(XLabel);
         west.add(calculatedXLabel);
 
+        JLabel YLabel = new JLabel("Y");
+        calculatedYLabel = new JLabel();
         west.add(YLabel);
         west.add(calculatedYLabel);
 
+        JLabel peakYLabel = new JLabel("Peak Y");
         west.add(peakYLabel);
         west.add(peakY);
 
+        JLabel interceptXLabel = new JLabel("Intercept X");
         west.add(interceptXLabel);
         west.add(interceptX);
 
+        JLabel empty = new JLabel();
         west.add(empty);
         west.add(calculateButton);
-
-        velocityField.getDocument().addDocumentListener((SimpleDocumentListener)
-                documentEvent -> createProjectile());
-
-        angleSlider.addChangeListener(changeEvent -> createProjectile());
 
         calculateButton.addActionListener(actionEvent -> createProjectile());
 
@@ -100,7 +101,7 @@ public class ProjectileFrame extends JFrame {
     private void createProjectile() {
         Projectile projectile = new Projectile(
                 angleSlider.getValue(),
-                Double.parseDouble(String.valueOf(velocityField.getX()))
+                Double.parseDouble(String.valueOf(velocityField.getText()))
         );
         projectile.setSeconds(
                 Double.parseDouble(secondsField.getText())

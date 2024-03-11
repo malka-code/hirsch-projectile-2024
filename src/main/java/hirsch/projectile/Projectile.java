@@ -1,5 +1,7 @@
 package hirsch.projectile;
 
+import static java.lang.Math.sin;
+
 public class Projectile {
     // class is a way to organize code
     // private means not accessible outside the class, limited scope
@@ -24,32 +26,28 @@ public class Projectile {
     }
 
     public double getY() {
-        return Math.sin(radians) * velocity * seconds
-                - .5 * GRAVITY * seconds * seconds;
+        return sin(radians) * velocity * seconds - (0.5 * GRAVITY * (seconds * seconds));
     }
 
     /**
      * @return the time when the projectile is at its highest point.
      */
     public double getApexTime() {
-        return velocity * Math.sin(radians) / GRAVITY;
+        return velocity * sin(radians) / GRAVITY;
     }
 
     /**
      * @return the highest Y value of the projectile.
      */
     public double getPeakY() {
-        return (Math.sin(radians) * velocity) * (Math.sin(radians) * velocity) / (GRAVITY * 2);
+        return Math.pow(velocity * sin(radians), 2) / (2 * GRAVITY);
     }
 
     public double getInterceptX() {
-        double t = 2 * (Math.sin(radians)) * velocity / GRAVITY;
+        double t = 2 * (sin(radians)) * velocity / GRAVITY;
 
         return Math.cos(radians) * velocity * t;
     }
 
-    public void setTime(int i) {
-
-    }
 }
 
