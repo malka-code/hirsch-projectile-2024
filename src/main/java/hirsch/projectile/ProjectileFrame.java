@@ -36,7 +36,7 @@ public class ProjectileFrame extends JFrame {
 
         angleSlider = new JSlider(JSlider.HORIZONTAL,
                 ANGLE_MIN, ANGLE_MAX, ANGLE_INIT);
-        angleSlider.addChangeListener(e-> createProjectile());
+        angleSlider.addChangeListener(e -> createProjectile());
 
         angleSlider.setMajorTickSpacing(10);
         angleSlider.setMinorTickSpacing(5);
@@ -49,9 +49,6 @@ public class ProjectileFrame extends JFrame {
         secondsField = new JTextField("0");
 
         secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> createProjectile());
-
-
-
 
         JButton calculateButton = new JButton("Calculate");
         peakY = new JLabel();
@@ -69,18 +66,19 @@ public class ProjectileFrame extends JFrame {
         west.add(secondsLabel);
         west.add(secondsField);
 
-        JLabel XLabel = new JLabel("X");
+        JLabel LabelX = new JLabel("X");
         calculatedLabelX = new JLabel();
-        west.add(XLabel);
+        west.add(LabelX);
         west.add(calculatedLabelX);
 
         JLabel YLabel = new JLabel("Y");
+
         calculatedLabelY = new JLabel();
         west.add(YLabel);
         west.add(calculatedLabelY);
 
-        JLabel peakYLabel = new JLabel("Peak Y");
-        west.add(peakYLabel);
+        JLabel peakLabelY = new JLabel("Peak Y");
+        west.add(peakLabelY);
         west.add(peakY);
 
         JLabel interceptXLabel = new JLabel("Intercept X");
