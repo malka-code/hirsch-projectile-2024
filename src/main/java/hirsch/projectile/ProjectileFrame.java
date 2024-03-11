@@ -55,7 +55,7 @@ public class ProjectileFrame extends JFrame {
         interceptX = new JLabel();
 
         JLabel velocityLabel = new JLabel("Velocity");
-        west.add (velocityLabel);
+        west.add(velocityLabel);
         west.add(velocityField);
 
         JLabel angleLabel = new JLabel("Angle");
