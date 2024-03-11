@@ -8,7 +8,6 @@ public class ProjectileGraph extends JComponent {
     private Projectile projectile = new Projectile(0, 0);
 
     @Override
-
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.translate(0, getHeight());
