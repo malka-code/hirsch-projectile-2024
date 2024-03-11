@@ -50,7 +50,7 @@ public class ProjectileFrame extends JFrame {
 
         secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> createProjectile());
 
-        JButton calculateButton = new JButton("Calculate");
+
         peakY = new JLabel();
         interceptX = new JLabel();
 
@@ -66,9 +66,9 @@ public class ProjectileFrame extends JFrame {
         west.add(secondsLabel);
         west.add(secondsField);
 
-        JLabel LabelX = new JLabel("X");
+        JLabel labelX = new JLabel("X");
         calculatedLabelX = new JLabel();
-        west.add(LabelX);
+        west.add(labelX);
         west.add(calculatedLabelX);
 
         JLabel YLabel = new JLabel("Y");
@@ -81,12 +81,14 @@ public class ProjectileFrame extends JFrame {
         west.add(peakLabelY);
         west.add(peakY);
 
-        JLabel interceptXLabel = new JLabel("Intercept X");
-        west.add(interceptXLabel);
+        JLabel interceptLabelX = new JLabel("Intercept X");
+        west.add(interceptLabelX);
         west.add(interceptX);
 
         JLabel empty = new JLabel();
         west.add(empty);
+
+        JButton calculateButton = new JButton("Calculate");
         west.add(calculateButton);
 
         calculateButton.addActionListener(actionEvent -> createProjectile());
