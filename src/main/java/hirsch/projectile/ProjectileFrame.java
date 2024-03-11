@@ -13,8 +13,8 @@ public class ProjectileFrame extends JFrame {
     private final JSlider angleSlider;
     private final JTextField velocityField;
     private final JTextField secondsField;
-    private final JLabel calculatedXLabel;
-    private final JLabel calculatedYLabel;
+    private final JLabel calculatedLabelX;
+    private final JLabel calculatedLabelY;
     private final JLabel peakY;
     private final JLabel interceptX;
     private ProjectileGraph graph = new ProjectileGraph();
@@ -32,7 +32,6 @@ public class ProjectileFrame extends JFrame {
         main.add(west, BorderLayout.WEST);
 
         west.setLayout(new GridLayout(8, 2));
-        JLabel velocityLabel = new JLabel("Velocity");
 
 
         angleSlider = new JSlider(JSlider.HORIZONTAL,
@@ -58,7 +57,7 @@ public class ProjectileFrame extends JFrame {
         peakY = new JLabel();
         interceptX = new JLabel();
 
-
+        JLabel velocityLabel = new JLabel("Velocity");
         west.add (velocityLabel);
         west.add(velocityField);
 
@@ -71,14 +70,14 @@ public class ProjectileFrame extends JFrame {
         west.add(secondsField);
 
         JLabel XLabel = new JLabel("X");
-        calculatedXLabel = new JLabel();
+        calculatedLabelX = new JLabel();
         west.add(XLabel);
-        west.add(calculatedXLabel);
+        west.add(calculatedLabelX);
 
         JLabel YLabel = new JLabel("Y");
-        calculatedYLabel = new JLabel();
+        calculatedLabelY = new JLabel();
         west.add(YLabel);
-        west.add(calculatedYLabel);
+        west.add(calculatedLabelY);
 
         JLabel peakYLabel = new JLabel("Peak Y");
         west.add(peakYLabel);
@@ -106,8 +105,8 @@ public class ProjectileFrame extends JFrame {
         projectile.setSeconds(
                 Double.parseDouble(secondsField.getText())
         );
-        calculatedXLabel.setText(Double.toString(projectile.getX()));
-        calculatedYLabel.setText(Double.toString(projectile.getY()));
+        calculatedLabelX.setText(Double.toString(projectile.getX()));
+        calculatedLabelY.setText(Double.toString(projectile.getY()));
         peakY.setText(Double.toString(projectile.getPeakY()));
         interceptX.setText(Double.toString(projectile.getInterceptX()));
         graph.setProjectile(projectile);
